@@ -1,0 +1,295 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 36,
+    "margin-right": 5,
+    "margin-left": 5,
+
+    "modules-left": [
+        "custom/rofi",
+        "custom/weather",
+        "custom/khorshididate",
+        "wlr/taskbar",
+        "cpu",
+        "memory",
+        "temperature"
+        //"tray"
+    ],
+
+    "modules-center": [
+        "custom/notify",
+        "hyprland/workspaces",
+    ],
+
+    "modules-right": [
+        "power-profiles-daemon",
+        "battery",
+        "backlight",
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "clock",
+        "custom/power"
+        //"custom/power-profile",
+        //"pulseaudio/slider",
+        //"hyprland/language",
+        //"custom/lock_screen",
+        //"pulseaudio#microphone",
+        //"disk",
+        //"custom/updates",
+    ],
+
+    "custom/rofi": {
+        "format": "",
+        "on-click": "rofi -show drun -show-icons -b",
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": "",
+         "on-click": "/home/alday/.config/waybar/scripts/powermenu.sh",
+        "tooltip": false
+    },
+
+    "custom/notify": {
+        "format": "",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "tooltip": false
+    },
+
+    "custom/power-profile": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/power-control.sh get",
+    "exec-interval": 3,
+    "on-click": "~/.config/waybar/scripts/power-control.sh gaming",
+    "on-click-right": "~/.config/waybar/scripts/power-control.sh power-saver",
+    "on-click-middle": "~/.config/waybar/scripts/power-control.sh balanced",
+    "tooltip": false
+    },
+
+    "custom/lock_screen": {
+        "format": "",
+        "on-click": "sh -c '(sleep 0.5s; swaylock -eFfki ~/Pictures/lockscreen.png)' & disown",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "disable-scroll": true,
+        "all-outputs": true,
+        "show-special": true,
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "*": [ 1, 2, 3 ],
+        },
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 28,
+        "all-outputs": true,
+        "tooltip-format": "{name}: {title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "rofi"
+         ]
+    },
+
+    "tray": {
+        "icon-size": 28,
+        "spacing": 10
+    },
+
+    "cpu": {
+        "interval": 10,
+        //"format-alt": "",
+        "max-length": 10,
+        "format": "  {usage}%",
+        "on-click": "ghostty -e htop"
+    },
+
+    "memory": {
+        "interval": 30,
+        //"format-alt": " ",
+        //"format-alt-click": "click-right",
+        "format": "  {}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "{used:0.1f}GB",
+        "on-click": "ghostty -e htop"
+    },
+
+    "disk": {
+        "interval": 600,
+        "format": "󰋊",
+        "path": "/",
+        "format-alt-click": "click-right",
+        "format-alt": "󰋊 {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
+        "states": {
+            "warning": 85,
+            "critical": 90,
+        },
+    },
+
+    "temperature": {
+        "thermal-zone": 9,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "format": " {temperatureC}°C",
+        "format-alt-click": "click-right",
+        "format-alt": "",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C!!",
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󱐋 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}",
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": " ",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "󱡬 ",
+            "hands-free": "󰂰",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip": true,
+        "tooltip-format": " {volume}% "
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        //"on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        //"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%+",
+        //"on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%-",
+        //"scroll-step": 5,
+        "tooltip": true,
+        "tooltip-format": "   {volume}% "
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format-alt": "{icon}",
+        "scroll-step": 5,
+        "format-alt-click": "click-right",
+        "format": "{icon}  {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "incbrightness",
+        "on-scroll-down": "decbrightness"
+    },
+
+    "custom/weather": {
+        //shows the current weather and forecast
+        "tooltip" : true,
+        "format" : "{}",
+        "interval" : 3600,
+        "exec" : "~/.config/waybar/scripts/wttr.py",
+        "return-type" : "json"
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+            }
+        },
+
+    "custom/updates": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/update-sys",
+        "on-click": "~/.config/waybar/scripts/update-sys update",
+        "interval": 3600,
+        "tooltip": true,
+        "signal": 8,
+        "return-type" : "json"
+    },
+
+    "network": {
+        //"format": "({signalStrength}%)",
+        "format-wifi": " ",
+        "format-ethernet": "󰈀",
+        "format-disconnected": " ", //An empty format will hide the module.
+        "tooltip-format": " {ifname} via {gwaddr}",
+        "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Disconnected",
+        //"format-alt": "{essid} {signalStrength}%",
+        //"on-click": "nm-connection-editor",
+        //"on-click": "ghostty -e nmtui",
+        "on-click-right": "~/.config/waybar/scripts/rofi-wifi-menu.sh",
+        "on-click": "ghostty -e nmtui",
+        "max-length": 70
+    },
+
+    "bluetooth": {
+        "format-on": "",
+        "format-off": "BT-off",
+        "format-disabled": "󰂲",
+        "on-click": "blueman-manager",
+        "format-connected-battery": " {device_alias}",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+        //"on-click": "~/.config/waybar/scripts/rofi-bluetooth.sh"
+    },
+
+    "clock": {
+        "format": "{:%I:%M:%p}",
+        "tooltip": false,
+        "format-alt": "{:%a, %d. %b  %I:%M:%p}"
+    },
+
+    "custom/khorshididate": {
+        "tooltip" : true,
+        "format": " {}",
+        "format-alt": " {alt}",
+        "format-alt-click": "click-right",
+        "interval": 3600,
+        "exec": "~/.config/waybar/scripts/khorshidi-date",
+        "return-type" : "json"
+    },
+
+   "hyprland/language": {
+        "format": "{}",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+        "format-en": "EN",
+        "format-fa": "FA"
+   },
+
+}

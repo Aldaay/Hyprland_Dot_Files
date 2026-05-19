@@ -1,0 +1,19 @@
+# 1. Bloquear absolutamente todo en .config
+/*
+
+# 2. LISTA VIP: Permitir SOLO estas carpetas (el ! significa "No ignores esto")
+!/hypr/
+!/waybar/
+!/rofi/
+!/kitty/
+!/swaync/
+!/swayosd/
+!/fastfetch/
+!/ghostty/
+
+# 3. Permitir que Git vea el propio archivo .gitignore
+!.gitignore
+
+# 4. Evitar archivos basura internos (Caché o Logs de errores)
+**/*.log
+**/cache/
