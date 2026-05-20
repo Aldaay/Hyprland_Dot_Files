@@ -10,6 +10,7 @@
 !/swayosd/
 !/fastfetch/
 !/ghostty/
+!README.md
 
 # 3. Permitir que Git vea el propio archivo .gitignore
 !.gitignore
