@@ -20,7 +20,7 @@
  */
 
 /* Colors (dracula) */
-@define-color background	rgba(54, 54, 54, 0.6);
+@define-color background	rgba(20, 20, 20, 0.3);
 @define-color orange	#ffb86c;
 @define-color gray	#44475a;
 @define-color black #21222c;
@@ -115,7 +115,6 @@ animation-duration: 0.5s;
 animation-timing-function: linear;
 animation-iteration-count: infinite;
 animation-direction: alternate;
-padding: 5px 12px;
 }
 
 #workspaces button:hover {
