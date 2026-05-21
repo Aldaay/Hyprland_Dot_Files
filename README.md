@@ -14,14 +14,21 @@ sudo pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa
 //brightness problems??
 sudo pacman -S brightnessctl
 
-//power profiles
+//power profiles ESTE YA NO SE OCUPA
 sudo pacman -S power-profiles-daemon
 sudo systemctl enable power-profiles-daemon
 sudo systemctl start power-profiles-daemon
 
+//USA ESTE EN VEZ DE POWER PROFILES DAEMON
+sudo pacman -S tlp tlp-rdw
+yay -S tlp-pd
+sudo systemctl enable --now tlp.service
+sudo systemctl enable --now tlp-pd.service
+
 //fastfetch at startup
 sudo pacman -S fastfetch
 nano ~/.bashrc
+y agregas "fastfetch" a la ultima linea.
 
 //sddm themes
 //entra a ese link ahi estan el comando para instalarlo
